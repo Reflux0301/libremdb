@@ -1,7 +1,7 @@
 # Thanks @yordis on Github! https://github.com/vercel/next.js/discussions/16995#discussioncomment-132339
 
 # Install dependencies only when needed
-FROM node:lts-alpine AS deps
+FROM node:18-alpine3.18 AS deps
 
 RUN apk add --no-cache wget
 
@@ -9,7 +9,7 @@ WORKDIR /opt/app
 RUN wget https://raw.githubusercontent.com/zyachel/libremdb/main/package.json
 RUN wget https://raw.githubusercontent.com/zyachel/libremdb/main/pnpm-lock.yaml
 RUN npm install -g pnpm
-RUN pnpm install --no-frozen-lockfile
+RUN pnpm install
 
 # Rebuild the source code only when needed
 # This is where because may be the case that you would try
